@@ -38,6 +38,20 @@ class TestGame < MiniTest::Test
     assert_equal 20, @game.score(score)
   end
 
+  def test_score_40_when_5s_are_before_and_after_a_strike_at_end
+    score = 15.times.map { 0 } + [5,10,5,5,5]
+    assert_equal 40, @game.score(score)
+  end
+
+  def test_score_266_when_all_strikes_except_last_frame
+   score = 9.times.map { 10 } + [3,7,3]
+   assert_equal 266, @game.score(score)
+ end
+ def test_score_156_when_gutter_followed_by_3s_and_7s
+   score = [0] + 10.times.map { [3,7] }.flatten
+   assert_equal 156, @game.score(score)
+ end
+
   def test_score_24_when_strike_is_followed_by_3_and_4
     score = [10,3,4] + 17.times.map { 0 }
     assert_equal 24, @game.score(score)
