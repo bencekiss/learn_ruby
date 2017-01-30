@@ -25,8 +25,8 @@ class Game
     frame = []
     # for i in (0..rolls.length)
     loop do
-
-      if rolls[i + 1] && i <= rolls.length - 4
+      # we have to treat the end differently. The last 3 rolls dont get any bonuses.
+      if i <= rolls.length - 4
         frame << rolls[i]
         frame << rolls[i + 1]
         result = framescore(frame)
